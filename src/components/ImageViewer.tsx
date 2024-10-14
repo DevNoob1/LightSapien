@@ -27,7 +27,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ totalImages }) => {
                 src={totalImages[currentPage]}
                 alt={`Page ${currentPage + 1}`}
 
-                onClick={handleNextPage} // Clicking on the image advances the page
+                onClick={handleNextPage}
             />
             <div
                 onClick={handlePrevPage}
@@ -35,7 +35,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ totalImages }) => {
                     position: 'absolute',
                     top: '0',
                     left: '0',
-                    width: '50%', // Only cover the left half of the image
+                    width: '50%',
                     height: '100%',
                     cursor: 'pointer',
                 }}
@@ -46,7 +46,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ totalImages }) => {
                     position: 'absolute',
                     top: '0',
                     right: '0',
-                    width: '50%', // Only cover the right half of the image
+                    width: '50%',
                     height: '100%',
                     cursor: 'pointer',
                 }}

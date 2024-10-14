@@ -1,4 +1,3 @@
-// src/components/BookList.tsx
 import React from 'react';
 import '../App.css'
 
@@ -7,7 +6,7 @@ import { MangaData } from '../data/mangaData';
 interface BookListProps {
     mangaData: MangaData;
     onSelectBook: (book: string) => void;
-    selectedBook: string | null; // New prop for tracking selected book
+    selectedBook: string | null;
 }
 
 const BookList: React.FC<BookListProps> = ({ mangaData, onSelectBook, selectedBook }) => {
@@ -20,7 +19,7 @@ const BookList: React.FC<BookListProps> = ({ mangaData, onSelectBook, selectedBo
                     <button key={book}
                         onClick={() => onSelectBook(book)}
                         style={{
-                            backgroundColor: selectedBook === book ? 'lightblue' : 'white', // Change color based on selection
+                            backgroundColor: selectedBook === book ? 'lightblue' : 'white',
                             border: '1px solid #ccc',
                             padding: '10px',
                             margin: '5px',

@@ -11,52 +11,47 @@ const App: React.FC = () => {
 
   const handleSelectBook = (book: string) => {
     setSelectedBook(book);
-    setSelectedChapter(null); // Reset chapter selection
-    setCurrentImageIndex(0); // Reset image index to show the first page
+    setSelectedChapter(null);
+    setCurrentImageIndex(0);
   };
 
   const handleSelectChapter = (chapterIndex: number) => {
     if (selectedBook) {
       setSelectedChapter(chapterIndex);
-      const imagesPerChapter = 5; // Assuming 5 images per chapter
-      setCurrentImageIndex(chapterIndex * imagesPerChapter); // Set to the first page of the selected chapter
+      const imagesPerChapter = 5;
+      setCurrentImageIndex(chapterIndex * imagesPerChapter); // First page of selected chapter
     }
   };
 
   const handleNextPage = () => {
     if (selectedBook && selectedChapter !== null) {
-      const imagesPerChapter = 5; // Assuming 5 images per chapter
+      const imagesPerChapter = 5;
       const totalChapters = mangaData[selectedBook].chapter_ids.length;
 
       if (currentImageIndex < (selectedChapter + 1) * imagesPerChapter - 1) {
-        // Still in the same chapter
         setCurrentImageIndex(prevIndex => prevIndex + 1);
       } else if (selectedChapter < totalChapters - 1) {
-        // Move to the next chapter
         setSelectedChapter(prevChapter => prevChapter! + 1);
-        setCurrentImageIndex((selectedChapter + 1) * imagesPerChapter); // Go to the first page of the next chapter
+        setCurrentImageIndex((selectedChapter + 1) * imagesPerChapter);
       }
     }
   };
 
   const handlePrevPage = () => {
     if (selectedBook && selectedChapter !== null) {
-      const imagesPerChapter = 5; // Assuming 5 images per chapter
+      const imagesPerChapter = 5;
 
       if (currentImageIndex > selectedChapter * imagesPerChapter) {
-        // Still in the same chapter
         setCurrentImageIndex(prevIndex => prevIndex - 1);
       } else if (selectedChapter > 0) {
-        // Move to the previous chapter
         setSelectedChapter(prevChapter => prevChapter! - 1);
         const previousChapterEndIndex = (selectedChapter - 1) * imagesPerChapter + (imagesPerChapter - 1);
-        setCurrentImageIndex(previousChapterEndIndex); // Set to last page of previous chapter
+        setCurrentImageIndex(previousChapterEndIndex);
       }
     }
   };
 
-  // Calculate total pages based on the selected chapter
-  const imagesPerChapter = 5; // Assuming 5 images per chapter
+  const imagesPerChapter = 5;
   const totalPages = selectedBook && selectedChapter !== null ?
     (mangaData[selectedBook].chapter_ids.length * imagesPerChapter) : 0;
 
